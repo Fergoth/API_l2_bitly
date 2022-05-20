@@ -42,17 +42,17 @@ def is_bitlink(url,token):
     bitly_url = "https://api-ssl.bitly.com/v4/bitlinks/{}".format(url)
     response = requests.get(bitly_url, headers=headers)
     return response.ok
-
-bitlink = urlparse(url).netloc + urlparse(url).path ## TODO: rename
-if is_bitlink(bitlink,TOKEN):
-    try:
-        count = count_clicks(bitlink, TOKEN)
-    except requests.exceptions.HTTPError as error:
-        exit("Ошибка получения данных \n{}".format(error))
-    print('Количество кликов за все время', count)
-else:
-    try:
-        bitlink = shorten_link(url, TOKEN)
-    except requests.exceptions.HTTPError as error:
-        exit("Ошибка получения данных \n{}".format(error))
-    print('Битлинк', bitlink)
+if __name__ == "__main__" :
+    bitlink = urlparse(url).netloc + urlparse(url).path ## TODO: rename
+    if is_bitlink(bitlink,TOKEN):
+        try:
+            count = count_clicks(bitlink, TOKEN)
+        except requests.exceptions.HTTPError as error:
+            exit("Ошибка получения данных \n{}".format(error))
+            print('Количество кликов за все время', count)
+        else:
+            try:
+                bitlink = shorten_link(url, TOKEN)
+            except requests.exceptions.HTTPError as error:
+                exit("Ошибка получения данных \n{}".format(error))
+                print('Битлинк', bitlink)
