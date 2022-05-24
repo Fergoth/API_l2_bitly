@@ -38,14 +38,14 @@ def is_bitlink(url, token):
 
 if __name__ == "__main__":
     url = input(
-        "Введите ссылку для сокращения, или битлинк для просмотр количества кликов")
-    cutted_bitlink = urlparse(url).netloc + urlparse(url).path  # TODO: rename
+        "Введите ссылку для сокращения, или битлинк для просмотр количества кликов\n")
+    cutted_bitlink = urlparse(url).netloc + urlparse(url).path  
     if is_bitlink(cutted_bitlink, TOKEN):
         try:
             clicks_count = count_clicks(cutted_bitlink, TOKEN)
         except requests.exceptions.HTTPError as error:
             exit("Ошибка получения данных \n{}".format(error))
-            print('Количество кликов за все время', clicks_count)
+        print('Количество кликов за все время', clicks_count)
     else:
         try:
             bitlink = shorten_link(url, TOKEN)
