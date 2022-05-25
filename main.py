@@ -37,7 +37,8 @@ if __name__ == "__main__":
     TOKEN = os.getenv("BITLY_TOKEN")
     url = input(
         "Введите ссылку для сокращения, или битлинк для просмотр количества кликов\n")
-    cutted_bitlink = urlparse(url).netloc + urlparse(url).path
+    parsed_url = urlparse(url)
+    cutted_bitlink = parsed_url.netloc + parsed_url.path
     if is_bitlink(cutted_bitlink, TOKEN):
         try:
             clicks_count = count_clicks(cutted_bitlink, TOKEN)
