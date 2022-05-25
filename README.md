@@ -13,7 +13,7 @@
  ```
 
 - Зарегистрируйтесь на https://bit.ly/ и получите токен https://app.bitly.com/settings/api/
-- Создайте файл .env и поместите туда свой токен `TOKEN=gskfg;lksh;fgo348`
+- Создайте файл .env и поместите туда свой токен `BITLY_TOKEN=gskfg;lksh;fgo348`
 - Запустите скрипт :
 ```
 python main.py

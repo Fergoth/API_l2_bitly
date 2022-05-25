@@ -32,9 +32,9 @@ def is_bitlink(url, token):
     return response.ok
 
 
-if __name__ == "__main__":    
+if __name__ == "__main__":
     load_dotenv()
-    TOKEN = os.getenv("TOKEN")
+    TOKEN = os.getenv("BITLY_TOKEN")
     url = input(
         "Введите ссылку для сокращения, или битлинк для просмотр количества кликов\n")
     cutted_bitlink = urlparse(url).netloc + urlparse(url).path
