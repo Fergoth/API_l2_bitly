@@ -2,6 +2,7 @@ import json
 import os
 
 from dotenv import load_dotenv
+import requests
 from urllib.parse import urlparse
 
 
