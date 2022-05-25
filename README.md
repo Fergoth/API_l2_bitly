@@ -7,10 +7,18 @@
 
 Для запуска требуется установленный  python версии 3.х
 - Скачайте код
-- установить зависимости из requirements.txt `pip install -r requirements.txt`
-- Зарегистрироваться на https://bit.ly/ и получить токен https://app.bitly.com/settings/api/
-- Создать файл .env и поместить туда свой токен `TOKEN=gskfg;lksh;fgo348`
-- запустить скрипт python main.py
+- Установите зависимости из requirements.txt
+ ```
+ pip install -r requirements.txt
+ ```
+
+- Зарегистрируйтесь на https://bit.ly/ и получите токен https://app.bitly.com/settings/api/
+- Создайте файл .env и поместите туда свой токен `TOKEN=gskfg;lksh;fgo348`
+- Запустите скрипт :
+```
+python main.py
+```
+
 # Как работать со скриптом
 
 После запуска введите полную ссылку чтобы получить Битлинк
