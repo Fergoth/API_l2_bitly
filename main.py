@@ -7,7 +7,7 @@ from urllib.parse import urlparse
 
 
 def shorten_link(url, token):
-    headers = {"Authorization": "Bearer " + token}
+    headers = {"Authorization": f"Bearer {token}"}
     payload = {'long_url': url}
     bitly_url = "https://api-ssl.bitly.com/v4/bitlinks"
     response = requests.post(bitly_url, headers=headers, json=payload)
@@ -17,7 +17,7 @@ def shorten_link(url, token):
 
 
 def count_clicks(bitlink, token):
-    headers = {"Authorization": "Bearer " + token}
+    headers = {"Authorization": f"Bearer {token}"}
     bitly_url = "https://api-ssl.bitly.com/v4/bitlinks/{}/clicks/summary".format(
         bitlink)
     response = requests.get(bitly_url, headers=headers)
@@ -27,7 +27,7 @@ def count_clicks(bitlink, token):
 
 
 def is_bitlink(url, token):
-    headers = {"Authorization": "Bearer " + token}
+    headers = {"Authorization": f"Bearer {token}"}
     bitly_url = "https://api-ssl.bitly.com/v4/bitlinks/{}".format(url)
     response = requests.get(bitly_url, headers=headers)
     return response.ok
@@ -39,7 +39,7 @@ if __name__ == "__main__":
     url = input(
         "Введите ссылку для сокращения, или битлинк для просмотр количества кликов\n")
     parsed_url = urlparse(url)
-    cutted_bitlink = parsed_url.netloc + parsed_url.path
+    cutted_bitlink = f"{parsed_url.netloc}{parsed_url.path}"
     if is_bitlink(cutted_bitlink, TOKEN):
         try:
             clicks_count = count_clicks(cutted_bitlink, TOKEN)
