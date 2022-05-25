@@ -5,10 +5,6 @@ from dotenv import load_dotenv
 from urllib.parse import urlparse
 
 
-load_dotenv()
-TOKEN = os.getenv("TOKEN")
-
-
 def shorten_link(url, token):
     headers = {"Authorization": "Bearer " + token}
     payload = {'long_url': url}
@@ -36,10 +32,12 @@ def is_bitlink(url, token):
     return response.ok
 
 
-if __name__ == "__main__":
+if __name__ == "__main__":    
+    load_dotenv()
+    TOKEN = os.getenv("TOKEN")
     url = input(
         "Введите ссылку для сокращения, или битлинк для просмотр количества кликов\n")
-    cutted_bitlink = urlparse(url).netloc + urlparse(url).path  
+    cutted_bitlink = urlparse(url).netloc + urlparse(url).path
     if is_bitlink(cutted_bitlink, TOKEN):
         try:
             clicks_count = count_clicks(cutted_bitlink, TOKEN)
