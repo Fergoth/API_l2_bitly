@@ -1,3 +1,4 @@
+import argparse
 import json
 import os
 
@@ -36,8 +37,12 @@ def is_bitlink(url, token):
 if __name__ == "__main__":
     load_dotenv()
     TOKEN = os.getenv("BITLY_TOKEN")
-    url = input(
-        "Введите ссылку для сокращения, или битлинк для просмотр количества кликов\n")
+    parser = argparse.ArgumentParser(
+        description ='Сокращение ссылок через сервис bitly или получение статистики по сокращенной ссылке'
+        )
+    parser.add_argument('url', help='урл для сокращения или сокращенный урл')
+    args = parser.parse_args()
+    url = args.url
     parsed_url = urlparse(url)
     cutted_bitlink = f"{parsed_url.netloc}{parsed_url.path}"
     if is_bitlink(cutted_bitlink, TOKEN):
