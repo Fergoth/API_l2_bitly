@@ -36,7 +36,7 @@ def is_bitlink(url, token):
 
 if __name__ == "__main__":
     load_dotenv()
-    TOKEN = os.getenv("BITLY_TOKEN")
+    token = os.getenv("BITLY_TOKEN")
     parser = argparse.ArgumentParser(
         description ='Сокращение ссылок через сервис bitly или получение статистики по сокращенной ссылке'
         )
@@ -45,15 +45,15 @@ if __name__ == "__main__":
     url = args.url
     parsed_url = urlparse(url)
     cutted_bitlink = f"{parsed_url.netloc}{parsed_url.path}"
-    if is_bitlink(cutted_bitlink, TOKEN):
+    if is_bitlink(cutted_bitlink, token):
         try:
-            clicks_count = count_clicks(cutted_bitlink, TOKEN)
+            clicks_count = count_clicks(cutted_bitlink, token)
         except requests.exceptions.HTTPError as error:
             exit("Ошибка получения данных \n{}".format(error))
         print('Количество кликов за все время', clicks_count)
     else:
         try:
-            bitlink = shorten_link(url, TOKEN)
+            bitlink = shorten_link(url, token)
         except requests.exceptions.HTTPError as error:
             exit("Ошибка получения данных \n{}".format(error))
         print('Битлинк', bitlink)
