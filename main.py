@@ -13,8 +13,8 @@ def shorten_link(url, token):
     bitly_url = "https://api-ssl.bitly.com/v4/bitlinks"
     response = requests.post(bitly_url, headers=headers, json=payload)
     response.raise_for_status()
-    short_link_info = response.json()
-    return short_link_info["link"]
+    short_link = response.json()["link"]
+    return short_link
 
 
 def count_clicks(bitlink, token):
@@ -33,8 +33,7 @@ def is_bitlink(url, token):
     response = requests.get(bitly_url, headers=headers)
     return response.ok
 
-
-if __name__ == "__main__":
+def main():
     load_dotenv()
     token = os.getenv("BITLY_TOKEN")
     parser = argparse.ArgumentParser(
@@ -57,3 +56,6 @@ if __name__ == "__main__":
         except requests.exceptions.HTTPError as error:
             exit("Ошибка получения данных \n{}".format(error))
         print('Битлинк', bitlink)
+
+if __name__ == "__main__":
+    main()
